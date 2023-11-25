@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://apstard.postel.go.id/assets/images/favicon.png">
+    <title>Login</title>
+    <meta name="author" content="David Grzyb" />
+    <meta name="description" content="" />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .body-bg {
+        background-color: #0093e9;
+        background-image: linear-gradient(160deg, #0093e9 0%, #80a0d0 100%);
+      }
+    </style>
+  </head>
+  <body
+    class="body-bg min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0"
+    style="font-family: 'Lato', sans-serif"
+  >
+  
+
+    <main
+      class="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl"
+    >
+      <section>
+        <img src="LOGO_EQUATOR.jpg" alt="" class="w-30 h-40 mx-auto" />
+        <h3 class="font-bold text-2xl text-center">
+          INSPEKSI DAN VALIDASI DATA IZIN <br />
+
+          <h3 class="font-bold text-2xl text-center">STASIUN RADIO</h3>
+        </h3>
+      </section>
+
+      <section class="mt-10">
+        <form class="flex flex-col" id="sign-in">
+          <div class="mb-2 pt-3 rounded bg-gray-200">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2 ml-3"
+              for="email"
+              >Username</label
+            >
+            <input
+              name="email"
+              type="text"
+              id="email"
+              class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
+            />
+          </div>
+          <div id="email-error" class="text-red-600 mb-2"></div>
+          <div class="mb-2 pt-3 rounded bg-gray-200">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2 ml-3"
+              for="password"
+              >Password</label
+            >
+            <input
+              name="password"
+              type="password"
+              id="password"
+              class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
+            />
+          </div>
+          <div id="password-error" class="text-red-600 mb-2"></div>
+          <div class="flex justify-end">
+            <a
+              href="#"
+              class="text-sm text-blue-600 hover:text-blue-700 hover:underline mb-6"
+              >Forgot your password?</a
+            >
+          </div>
+          <button
+            id="password-error"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200"
+            type="submit"
+          >
+            Login
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <div class="max-w-lg mx-auto text-center mt-12 mb-6">
+      <p class="text-white">
+        Have an account?
+        <a href="/signup" class="font-bold hover:underline">Sign up</a>.
+      </p>
+    </div>
+
+    <footer class="max-w-lg mx-auto flex justify-center text-white">
+      <a href="#" class="hover:underline">Contact</a>
+      <span class="mx-3">•</span>
+      <a href="#" class="hover:underline">Privacy</a>
+    </footer>
+
+    <script>
+      const form = document.getElementById("sign-in");
+      const emailError = document.getElementById("email-error");
+      const passwordError = document.getElementById("password-error");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // reset errors
+        emailError.textContent = "";
+        passwordError.textContent = "";
+
+        const email = form.email.value;
+        const password = form.password.value;
+
+        console.log(email, password);
+
+        try {
+          const res = await fetch("/login", {
+            method: "POST",
+            body: JSON.stringify({ email, password }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          const data = await res.json();
+          console.log(data);
+
+          if (data.errors) {
+            emailError.textContent = data.errors.email;
+            passwordError.textContent = data.errors.password;
+          }
+
+          if (data.user) {
+            location.assign("/");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    </script>
+  </body>
+</html>

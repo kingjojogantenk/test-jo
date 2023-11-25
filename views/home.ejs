@@ -1,0 +1,987 @@
+<!-- component -->
+<!DOCTYPE html>
+<html x-data="data()" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://apstard.postel.go.id/assets/images/favicon.png"
+    />
+    <title>Home</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicon -->
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- <script src="../views/chart.js"></script> -->
+  </head>
+
+  <body>
+    <div
+      class="flex h-screen bg-gray-800"
+      :class="{ 'overflow-hidden': isSideMenuOpen }"
+    >
+      <!-- Desktop sidebar -->
+      <%- include('partials/sidebar'); -%>
+
+      <div class="flex flex-col flex-1 w-full overflow-y-auto">
+        <%- include('partials/header'); -%>
+        <main class="">
+          <div
+            class="grid mb-4 pb-10 px-8 mx-4 rounded-3xl bg-gray-100 border-4 border-green-400"
+          >
+            <div class="grid grid-cols-12 gap-6">
+              <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
+                <div class="col-span-12 mt-8">
+                  <div class="grid grid-cols-12 gap-6 mt-5">
+                    <a
+                      class="transform hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
+                      href="#"
+                    >
+                      <div class="p-5">
+                        <div class="flex justify-between">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-7 w-7"
+                            height="1em"
+                            viewBox="0 0 576 512"
+                          >
+                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                              d="M96 80c0-26.5 21.5-48 48-48H432c26.5 0 48 21.5 48 48V384H96V80zm313 47c-9.4-9.4-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L409 161c9.4-9.4 9.4-24.6 0-33.9zM0 336c0-26.5 21.5-48 48-48H64V416H512V288h16c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V336z"
+                            />
+                          </svg>
+                          <div
+                            class="bg-blue-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm"
+                          >
+                            <span class="flex items-center">Sesuai ISR</span>
+                          </div>
+                        </div>
+                        <div class="ml-2 w-full flex-1">
+                          <div>
+                            <div class="mt-3 text-3xl font-bold leading-8">
+                              <%= countSesuaiISR %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <a
+                      class="transform hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
+                      href="#"
+                    >
+                      <div class="p-5">
+                        <div class="flex justify-between">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-7 w-7"
+                            height="1em"
+                            viewBox="0 0 448 512"
+                          >
+                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                              d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm79 143c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"
+                            />
+                          </svg>
+                          <div
+                            class="bg-green-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm"
+                          >
+                            <span class="flex items-center"
+                              >Tidak Sesuai ISR</span
+                            >
+                          </div>
+                        </div>
+                        <div class="ml-2 w-full flex-1">
+                          <div>
+                            <div class="mt-3 text-3xl font-bold leading-8">
+                              <%= countTidakSesuaiISR %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <a
+                      class="transform hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
+                      href="#"
+                    >
+                      <div class="p-5">
+                        <div class="flex justify-between">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-7 w-7"
+                            height="1em"
+                            viewBox="0 0 640 512"
+                          >
+                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                              d="M240 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM192 48a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm-32 80c17.7 0 32 14.3 32 32h8c13.3 0 24 10.7 24 24v16c0 1.7-.2 3.4-.5 5.1C280.3 229.6 320 286.2 320 352c0 88.4-71.6 160-160 160S0 440.4 0 352c0-65.8 39.7-122.4 96.5-146.9c-.4-1.6-.5-3.3-.5-5.1V184c0-13.3 10.7-24 24-24h8c0-17.7 14.3-32 32-32zm0 320a96 96 0 1 0 0-192 96 96 0 1 0 0 192zm192-96c0-25.9-5.1-50.5-14.4-73.1c16.9-32.9 44.8-59.1 78.9-73.9c-.4-1.6-.5-3.3-.5-5.1V184c0-13.3 10.7-24 24-24h8c0-17.7 14.3-32 32-32s32 14.3 32 32h8c13.3 0 24 10.7 24 24v16c0 1.7-.2 3.4-.5 5.1C600.3 229.6 640 286.2 640 352c0 88.4-71.6 160-160 160c-62 0-115.8-35.3-142.4-86.9c9.3-22.5 14.4-47.2 14.4-73.1zm224 0a96 96 0 1 0 -192 0 96 96 0 1 0 192 0zM368 0a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm80 48a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"
+                            />
+                          </svg>
+                          <div
+                            class="bg-yellow-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm"
+                          >
+                            <span class="flex items-center">Tidak Berizin</span>
+                          </div>
+                        </div>
+                        <div class="ml-2 w-full flex-1">
+                          <div>
+                            <div class="mt-3 text-3xl font-bold leading-8">
+                              <%= countTidakBerizin %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+
+                    <a
+                      class="transform hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
+                      href="#"
+                    >
+                      <div class="p-5">
+                        <div class="flex justify-between">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-7 w-7"
+                            height="1em"
+                            viewBox="0 0 512 512"
+                          >
+                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                              d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+                            />
+                          </svg>
+                          <div
+                            class="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm"
+                          >
+                            <span class="flex items-center">Tidak Aktif</span>
+                          </div>
+                        </div>
+                        <div class="ml-2 w-full flex-1">
+                          <div>
+                            <div class="mt-3 text-3xl font-bold leading-8">
+                              <%= countTidakAktif %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!-- hidden div Kapuas Hulu -->
+                <% for (let i=0; i < result.length; i++) { %>
+                <p style="display: none">
+                  Kabupaten/Kota: <%= result[i]._id %>
+                </p>
+                <% if(result[i]._id==="KAPUAS HULU" ) { %>
+                <p id="kapuas_hulu" style="display: none">
+                  Sesuai ISR: <%= result[i].Sesuai_ISR %>
+                </p>
+                <p id="kapuas_hulu2" style="display: none">
+                  Tidak Sesuai ISR: <%= result[i].Tidak_Sesuai_ISR %>
+                </p>
+                <p id="kapuas_hulu3" style="display: none">
+                  Tidak Berizin: <%= result[i].Tidak_Berizin %>
+                </p>
+                <p id="kapuas_hulu4" style="display: none">
+                  Tidak Aktif: <%= result[i].Tidak_Aktif %>
+                </p>
+                <% } %> <% } %> <% for (let i=0; i < result.length; i++) { %>
+                <p style="display: none">
+                  Kabupaten/Kota: <%= result[i]._id %>
+                </p>
+                <% if(result[i]._id==="SINTANG" ) { %>
+                <p id="sintang" style="display: none">
+                  Sesuai ISR: <%= result[i].Sesuai_ISR %>
+                </p>
+                <p id="sintang2" style="display: none">
+                  Tidak Sesuai ISR: <%= result[i].Tidak_Sesuai_ISR %>
+                </p>
+                <p id="sintang3" style="display: none">
+                  Tidak Berizin: <%= result[i].Tidak_Berizin %>
+                </p>
+                <p id="sintang4" style="display: none">
+                  Tidak Aktif: <%= result[i].Tidak_Aktif %>
+                </p>
+                <% } %> <% } %>
+
+                <!-- hidden div Kapuas HULU-->
+                <!-- hidden div Sekadau -->
+                <% for (let i=0; i < result.length; i++) { %>
+                <p style="display: none">
+                  Kabupaten/Kota: <%= result[i]._id %>
+                </p>
+                <% if(result[i]._id==="SEKADAU" ) { %>
+                <p id="sekadau" style="display: none">
+                  Sesuai ISR: <%= result[i].Sesuai_ISR %>
+                </p>
+                <p id="sekadau2" style="display: none">
+                  Tidak Sesuai ISR: <%= result[i].Tidak_Sesuai_ISR %>
+                </p>
+                <p id="sekadau3" style="display: none">
+                  Tidak Berizin: <%= result[i].Tidak_Berizin %>
+                </p>
+                <p id="sekadau4" style="display: none">
+                  Tidak Aktif: <%= result[i].Tidak_Aktif %>
+                </p>
+                <% } %> <% } %>
+
+                <!-- hidden div Sekadau-->
+                <!-- hidden div Sanggau -->
+                <% for (let i=0; i < result.length; i++) { %>
+                <p style="display: none">
+                  Kabupaten/Kota: <%= result[i]._id %>
+                </p>
+                <% if(result[i]._id==="SANGGAU" ) { %>
+                <p id="sanggau" style="display: none">
+                  Sesuai ISR: <%= result[i].Sesuai_ISR %>
+                </p>
+                <p id="sanggau2" style="display: none">
+                  Tidak Sesuai ISR: <%= result[i].Tidak_Sesuai_ISR %>
+                </p>
+                <p id="sanggau3" style="display: none">
+                  Tidak Berizin: <%= result[i].Tidak_Berizin %>
+                </p>
+                <p id="sanggau4" style="display: none">
+                  Tidak Aktif: <%= result[i].Tidak_Aktif %>
+                </p>
+                <% } %> <% } %>
+
+                <!-- hidden div Sanggau->
+                  <!-- hidden div Pontianaj -->
+                <% for (let i=0; i < result.length; i++) { %>
+                <p style="display: none">
+                  Kabupaten/Kota: <%= result[i]._id %>
+                </p>
+                <% if(result[i]._id==="PONTIANAK" ) { %>
+                <p id="pontianak" style="display: none">
+                  Sesuai ISR: <%= result[i].Sesuai_ISR %>
+                </p>
+                <p id="pontianak2" style="display: none">
+                  Tidak Sesuai ISR: <%= result[i].Tidak_Sesuai_ISR %>
+                </p>
+                <p id="pontianak3" style="display: none">
+                  Tidak Berizin: <%= result[i].Tidak_Berizin %>
+                </p>
+                <p id="pontianak4" style="display: none">
+                  Tidak Aktif: <%= result[i].Tidak_Aktif %>
+                </p>
+                <% } %> <% } %>
+
+                <!-- hidden div Pontianak-->
+                <!-- hidden div Mempawah -->
+                <% for (let i=0; i < result.length; i++) { %>
+                <p style="display: none">
+                  Kabupaten/Kota: <%= result[i]._id %>
+                </p>
+                <% if(result[i]._id==="MEMPAWAH" ) { %>
+                <p id="mempawah" style="display: none">
+                  Sesuai ISR: <%= result[i].Sesuai_ISR %>
+                </p>
+                <p id="mempawah2" style="display: none">
+                  Tidak Sesuai ISR: <%= result[i].Tidak_Sesuai_ISR %>
+                </p>
+                <p id="mempawah3" style="display: none">
+                  Tidak Berizin: <%= result[i].Tidak_Berizin %>
+                </p>
+                <p id="mempawah4" style="display: none">
+                  Tidak Aktif: <%= result[i].Tidak_Aktif %>
+                </p>
+                <% } %> <% } %>
+
+                <!-- hidden div Mempawah-->
+                <!-- hidden div MELAWI -->
+                <% for (let i=0; i < result.length; i++) { %>
+                <p style="display: none">
+                  Kabupaten/Kota: <%= result[i]._id %>
+                </p>
+                <% if(result[i]._id==="MELAWI" ) { %>
+                <p id="melawi" style="display: none">
+                  Sesuai ISR: <%= result[i].Sesuai_ISR %>
+                </p>
+                <p id="melawi2" style="display: none">
+                  Tidak Sesuai ISR: <%= result[i].Tidak_Sesuai_ISR %>
+                </p>
+                <p id="melawi3" style="display: none">
+                  Tidak Berizin: <%= result[i].Tidak_Berizin %>
+                </p>
+                <p id="melawi4" style="display: none">
+                  Tidak Aktif: <%= result[i].Tidak_Aktif %>
+                </p>
+                <% } %> <% } %>
+
+                <!-- hidden div MELAWI-->
+                <!-- hidden div LANDAK -->
+                <% for (let i=0; i < result.length; i++) { %>
+                <p style="display: none">
+                  Kabupaten/Kota: <%= result[i]._id %>
+                </p>
+                <% if(result[i]._id==="LANDAK" ) { %>
+                <p id="landak" style="display: none">
+                  Sesuai ISR: <%= result[i].Sesuai_ISR %>
+                </p>
+                <p id="landak2" style="display: none">
+                  Tidak Sesuai ISR: <%= result[i].Tidak_Sesuai_ISR %>
+                </p>
+                <p id="landak3" style="display: none">
+                  Tidak Berizin: <%= result[i].Tidak_Berizin %>
+                </p>
+                <p id="landak4" style="display: none">
+                  Tidak Aktif: <%= result[i].Tidak_Aktif %>
+                </p>
+                <% } %> <% } %>
+
+                <!-- hidden div LANDAK-->
+                <!-- hidden div KUBURAYA -->
+                <% for (let i=0; i < result.length; i++) { %>
+                <p style="display: none">
+                  Kabupaten/Kota: <%= result[i]._id %>
+                </p>
+                <% if(result[i]._id==="KUBURAYA" ) { %>
+                <p id="kuburaya" style="display: none">
+                  Sesuai ISR: <%= result[i].Sesuai_ISR %>
+                </p>
+                <p id="kuburaya2" style="display: none">
+                  Tidak Sesuai ISR: <%= result[i].Tidak_Sesuai_ISR %>
+                </p>
+                <p id="kuburaya3" style="display: none">
+                  Tidak Berizin: <%= result[i].Tidak_Berizin %>
+                </p>
+                <p id="kuburaya4" style="display: none">
+                  Tidak Aktif: <%= result[i].Tidak_Aktif %>
+                </p>
+                <% } %> <% } %>
+
+                <!-- hidden div KUBURAYA-->
+                <!-- hidden div KOTA Pontianak -->
+                <% for (let i=0; i < result.length; i++) { %>
+                <p style="display: none">
+                  Kabupaten/Kota: <%= result[i]._id %>
+                </p>
+                <% if(result[i]._id==="KOTA PONTIANAK" ) { %>
+                <p id="kota_pontianak" style="display: none">
+                  Sesuai ISR: <%= result[i].Sesuai_ISR %>
+                </p>
+                <p id="kota_pontianak2" style="display: none">
+                  Tidak Sesuai ISR: <%= result[i].Tidak_Sesuai_ISR %>
+                </p>
+                <p id="kota_pontianak3" style="display: none">
+                  Tidak Berizin: <%= result[i].Tidak_Berizin %>
+                </p>
+                <p id="kota_pontianak4" style="display: none">
+                  Tidak Aktif: <%= result[i].Tidak_Aktif %>
+                </p>
+                <% } %> <% } %>
+
+                <!-- hidden div KOTA PONTIANAK-->
+                <!-- hidden div KETAPANG -->
+                <% for (let i=0; i < result.length; i++) { %>
+                <p style="display: none">
+                  Kabupaten/Kota: <%= result[i]._id %>
+                </p>
+                <% if(result[i]._id==="KETAPANG" ) { %>
+                <p id="ketapang" style="display: none">
+                  Sesuai ISR: <%= result[i].Sesuai_ISR %>
+                </p>
+                <p id="ketapang2" style="display: none">
+                  Tidak Sesuai ISR: <%= result[i].Tidak_Sesuai_ISR %>
+                </p>
+                <p id="ketapang3" style="display: none">
+                  Tidak Berizin: <%= result[i].Tidak_Berizin %>
+                </p>
+                <p id="ketapang4" style="display: none">
+                  Tidak Aktif: <%= result[i].Tidak_Aktif %>
+                </p>
+                <% } %> <% } %>
+
+                <!-- hidden div ketapang-->
+                <!-- hidden div kayong utara -->
+                <% for (let i=0; i < result.length; i++) { %>
+                <p style="display: none">
+                  Kabupaten/Kota: <%= result[i]._id %>
+                </p>
+                <% if(result[i]._id==="KAYONG UTARA" ) { %>
+                <p id="kayong_utara" style="display: none">
+                  Sesuai ISR: <%= result[i].Sesuai_ISR %>
+                </p>
+                <p id="kayong_utara2" style="display: none">
+                  Tidak Sesuai ISR: <%= result[i].Tidak_Sesuai_ISR %>
+                </p>
+                <p id="kayong_utara3" style="display: none">
+                  Tidak Berizin: <%= result[i].Tidak_Berizin %>
+                </p>
+                <p id="kayong_utara4" style="display: none">
+                  Tidak Aktif: <%= result[i].Tidak_Aktif %>
+                </p>
+                <% } %> <% } %>
+
+                <!-- hidden div Kayong utara-->
+                <div class="col-span-12 mt-5">
+                  <div class="grid gap-2 grid-cols-1 lg:grid-cols-1">
+                    <div class="bg-white shadow-lg p-4" id="chartline"></div>
+                  </div>
+                </div>
+                <div class="col-span-12 mt-5">
+                  <!-- Table -->
+                  <!-- <div class="grid gap-2 grid-cols-1 lg:grid-cols-1">
+                    <div class="bg-white p-4 shadow-lg rounded-lg">
+                      <h1 class="font-bold text-base">Table</h1>
+                      <div class="mt-4">
+                        <div class="flex flex-col">
+                          <div class="-my-2 overflow-x-auto">
+                            <div
+                              class="py-2 align-middle inline-block min-w-full"
+                            >
+                              <div
+                                class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg bg-white"
+                              >
+                                <table
+                                  class="min-w-full divide-y divide-gray-200"
+                                >
+                                  <thead>
+                                    <tr>
+                                      <th
+                                        class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                                      >
+                                        <div class="flex cursor-pointer">
+                                          <span class="mr-2">PRODUCT NAME</span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                                      >
+                                        <div class="flex cursor-pointer">
+                                          <span class="mr-2">Stock</span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                                      >
+                                        <div class="flex cursor-pointer">
+                                          <span class="mr-2">STATUS</span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                                      >
+                                        <div class="flex cursor-pointer">
+                                          <span class="mr-2">ACTION</span>
+                                        </div>
+                                      </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody
+                                    class="bg-white divide-y divide-gray-200"
+                                  >
+                                    <tr>
+                                      <td
+                                        class="px-6 py-4 whitespace-no-wrap text-sm leading-5"
+                                      >
+                                        <p>Apple MacBook Pro 13</p>
+                                        <p class="text-xs text-gray-400">
+                                          PC & Laptop
+                                        </p>
+                                      </td>
+                                      <td
+                                        class="px-6 py-4 whitespace-no-wrap text-sm leading-5"
+                                      >
+                                        <p>77</p>
+                                      </td>
+                                      <td
+                                        class="px-6 py-4 whitespace-no-wrap text-sm leading-5"
+                                      >
+                                        <div class="flex text-green-500">
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="w-5 h-5 mr-1"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                          >
+                                            <path
+                                              stroke-linecap="round"
+                                              stroke-linejoin="round"
+                                              stroke-width="2"
+                                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
+                                          </svg>
+                                          <p>Active</p>
+                                        </div>
+                                      </td>
+                                      <td
+                                        class="px-6 py-4 whitespace-no-wrap text-sm leading-5"
+                                      >
+                                        <div class="flex space-x-4">
+                                          <a
+                                            href="#"
+                                            class="text-blue-500 hover:text-blue-600"
+                                          >
+                                            <svg
+                                              xmlns="http://www.w3.org/2000/svg"
+                                              class="w-5 h-5 mr-1"
+                                              fill="none"
+                                              viewBox="0 0 24 24"
+                                              stroke="currentColor"
+                                            >
+                                              <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                              />
+                                            </svg>
+                                            <p>Edit</p>
+                                          </a>
+                                          <a
+                                            href="#"
+                                            class="text-red-500 hover:text-red-600"
+                                          >
+                                            <svg
+                                              xmlns="http://www.w3.org/2000/svg"
+                                              class="w-5 h-5 mr-1 ml-3"
+                                              fill="none"
+                                              viewBox="0 0 24 24"
+                                              stroke="currentColor"
+                                            >
+                                              <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                              />
+                                            </svg>
+                                            <p>Delete</p>
+                                          </a>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+      function data() {
+        return {
+          isSideMenuOpen: false,
+          toggleSideMenu() {
+            this.isSideMenuOpen = !this.isSideMenuOpen;
+          },
+          closeSideMenu() {
+            this.isSideMenuOpen = false;
+          },
+          isNotificationsMenuOpen: false,
+          toggleNotificationsMenu() {
+            this.isNotificationsMenuOpen = !this.isNotificationsMenuOpen;
+          },
+          closeNotificationsMenu() {
+            this.isNotificationsMenuOpen = false;
+          },
+          isProfileMenuOpen: false,
+          toggleProfileMenu() {
+            this.isProfileMenuOpen = !this.isProfileMenuOpen;
+          },
+          closeProfileMenu() {
+            this.isProfileMenuOpen = false;
+          },
+          isPagesMenuOpen: false,
+          togglePagesMenu() {
+            this.isPagesMenuOpen = !this.isPagesMenuOpen;
+          },
+        };
+      }
+    </script>
+    <script>
+      // Kapuas Hulu
+      var kapuas_hulu = document.getElementById("kapuas_hulu");
+      var kapuas_hulu2 = document.getElementById("kapuas_hulu2");
+      var kapuas_hulu3 = document.getElementById("kapuas_hulu3");
+      var kapuas_hulu4 = document.getElementById("kapuas_hulu4");
+
+      var value_kapuas_hulu = kapuas_hulu.textContent;
+      var value_kapuas_hulu2 = kapuas_hulu2.textContent;
+      var value_kapuas_hulu3 = kapuas_hulu3.textContent;
+      var value_kapuas_hulu4 = kapuas_hulu4.textContent;
+
+      var kapuas_hulu_count = parseFloat(
+        value_kapuas_hulu.match(/\d+(\.\d+)?/)[0]
+      );
+      var kapuas_hulu_count2 = parseFloat(
+        value_kapuas_hulu2.match(/\d+(\.\d+)?/)[0]
+      );
+      var kapuas_hulu_count3 = parseFloat(
+        value_kapuas_hulu3.match(/\d+(\.\d+)?/)[0]
+      );
+      var kapuas_hulu_count4 = parseFloat(
+        value_kapuas_hulu4.match(/\d+(\.\d+)?/)[0]
+      );
+      // Sekadau
+      var sekadau = document.getElementById("sekadau");
+      var sekadau2 = document.getElementById("sekadau2");
+      var sekadau3 = document.getElementById("sekadau3");
+      var sekadau4 = document.getElementById("sekadau4");
+
+      var value_sekadau = sekadau.textContent;
+      var value_sekadau2 = sekadau2.textContent;
+      var value_sekadau3 = sekadau3.textContent;
+      var value_sekadau4 = sekadau4.textContent;
+
+      var sekadau_count = parseFloat(value_sekadau.match(/\d+(\.\d+)?/)[0]);
+      var sekadau_count2 = parseFloat(value_sekadau2.match(/\d+(\.\d+)?/)[0]);
+      var sekadau_count3 = parseFloat(value_sekadau3.match(/\d+(\.\d+)?/)[0]);
+      var sekadau_count4 = parseFloat(value_sekadau4.match(/\d+(\.\d+)?/)[0]);
+      // Sintang
+      var sintang = document.getElementById("sintang");
+      var sintang2 = document.getElementById("sintang2");
+      var sintang3 = document.getElementById("sintang3");
+      var sintang4 = document.getElementById("sintang4");
+
+      var value_sintang = sintang.textContent;
+      var value_sintang2 = sintang2.textContent;
+      var value_sintang3 = sintang3.textContent;
+      var value_sintang4 = sintang4.textContent;
+
+      var sintang_count = parseFloat(value_sintang.match(/\d+(\.\d+)?/)[0]);
+      var sintang_count2 = parseFloat(value_sintang2.match(/\d+(\.\d+)?/)[0]);
+      var sintang_count3 = parseFloat(value_sintang3.match(/\d+(\.\d+)?/)[0]);
+      var sintang_count4 = parseFloat(value_sintang4.match(/\d+(\.\d+)?/)[0]);
+      // Sanggau
+      var sanggau = document.getElementById("sanggau");
+      var sanggau2 = document.getElementById("sanggau2");
+      var sanggau3 = document.getElementById("sanggau3");
+      var sanggau4 = document.getElementById("sanggau4");
+
+      var value_sanggau = sanggau.textContent;
+      var value_sanggau2 = sanggau2.textContent;
+      var value_sanggau3 = sanggau3.textContent;
+      var value_sanggau4 = sanggau4.textContent;
+
+      var sanggau_count = parseFloat(value_sanggau.match(/\d+(\.\d+)?/)[0]);
+      var sanggau_count2 = parseFloat(value_sanggau2.match(/\d+(\.\d+)?/)[0]);
+      var sanggau_count3 = parseFloat(value_sanggau3.match(/\d+(\.\d+)?/)[0]);
+      var sanggau_count4 = parseFloat(value_sanggau4.match(/\d+(\.\d+)?/)[0]);
+      // Pontianak
+      var pontianak = document.getElementById("pontianak");
+      var pontianak2 = document.getElementById("pontianak2");
+      var pontianak3 = document.getElementById("pontianak3");
+      var pontianak4 = document.getElementById("pontianak4");
+
+      var value_pontianak = pontianak.textContent;
+      var value_pontianak2 = pontianak2.textContent;
+      var value_pontianak3 = pontianak3.textContent;
+      var value_pontianak4 = pontianak4.textContent;
+
+      var pontianak_count = parseFloat(value_pontianak.match(/\d+(\.\d+)?/)[0]);
+      var pontianak_count2 = parseFloat(
+        value_pontianak2.match(/\d+(\.\d+)?/)[0]
+      );
+      var pontianak_count3 = parseFloat(
+        value_pontianak3.match(/\d+(\.\d+)?/)[0]
+      );
+      var pontianak_count4 = parseFloat(
+        value_pontianak4.match(/\d+(\.\d+)?/)[0]
+      );
+      // mempawah
+      var mempawah = document.getElementById("mempawah");
+      var mempawah2 = document.getElementById("mempawah2");
+      var mempawah3 = document.getElementById("mempawah3");
+      var mempawah4 = document.getElementById("mempawah4");
+
+      var value_mempawah = mempawah.textContent;
+      var value_mempawah2 = mempawah2.textContent;
+      var value_mempawah3 = mempawah3.textContent;
+      var value_mempawah4 = mempawah4.textContent;
+
+      var mempawah_count = parseFloat(value_mempawah.match(/\d+(\.\d+)?/)[0]);
+      var mempawah_count2 = parseFloat(value_mempawah2.match(/\d+(\.\d+)?/)[0]);
+      var mempawah_count3 = parseFloat(value_mempawah3.match(/\d+(\.\d+)?/)[0]);
+      var mempawah_count4 = parseFloat(value_mempawah4.match(/\d+(\.\d+)?/)[0]);
+      // melawi
+      var melawi = document.getElementById("melawi");
+      var melawi2 = document.getElementById("melawi2");
+      var melawi3 = document.getElementById("melawi3");
+      var melawi4 = document.getElementById("melawi4");
+
+      var value_melawi = melawi.textContent;
+      var value_melawi2 = melawi2.textContent;
+      var value_melawi3 = melawi3.textContent;
+      var value_melawi4 = melawi4.textContent;
+
+      var melawi_count = parseFloat(value_melawi.match(/\d+(\.\d+)?/)[0]);
+      var melawi_count2 = parseFloat(value_melawi2.match(/\d+(\.\d+)?/)[0]);
+      var melawi_count3 = parseFloat(value_melawi3.match(/\d+(\.\d+)?/)[0]);
+      var melawi_count4 = parseFloat(value_melawi4.match(/\d+(\.\d+)?/)[0]);
+      // Landak
+      var landak = document.getElementById("landak");
+      var landak2 = document.getElementById("landak2");
+      var landak3 = document.getElementById("landak3");
+      var landak4 = document.getElementById("landak4");
+
+      var value_landak = landak.textContent;
+      var value_landak2 = landak2.textContent;
+      var value_landak3 = landak3.textContent;
+      var value_landak4 = landak4.textContent;
+
+      var landak_count = parseFloat(value_landak.match(/\d+(\.\d+)?/)[0]);
+      var landak_count2 = parseFloat(value_landak2.match(/\d+(\.\d+)?/)[0]);
+      var landak_count3 = parseFloat(value_landak3.match(/\d+(\.\d+)?/)[0]);
+      var landak_count4 = parseFloat(value_landak4.match(/\d+(\.\d+)?/)[0]);
+      // Kuburaya
+      var kuburaya = document.getElementById("kuburaya");
+      var kuburaya2 = document.getElementById("kuburaya2");
+      var kuburaya3 = document.getElementById("kuburaya3");
+      var kuburaya4 = document.getElementById("kuburaya4");
+
+      var value_kuburaya = kuburaya.textContent;
+      var value_kuburaya2 = kuburaya2.textContent;
+      var value_kuburaya3 = kuburaya3.textContent;
+      var value_kuburaya4 = kuburaya4.textContent;
+
+      var kuburaya_count = parseFloat(value_kuburaya.match(/\d+(\.\d+)?/)[0]);
+      var kuburaya_count2 = parseFloat(value_kuburaya2.match(/\d+(\.\d+)?/)[0]);
+      var kuburaya_count3 = parseFloat(value_kuburaya3.match(/\d+(\.\d+)?/)[0]);
+      var kuburaya_count4 = parseFloat(value_kuburaya4.match(/\d+(\.\d+)?/)[0]);
+      // kota pontianak
+      var kota_pontianak = document.getElementById("kota_pontianak");
+      var kota_pontianak2 = document.getElementById("kota_pontianak2");
+      var kota_pontianak3 = document.getElementById("kota_pontianak3");
+      var kota_pontianak4 = document.getElementById("kota_pontianak4");
+
+      var value_kota_pontianak = kota_pontianak.textContent;
+      var value_kota_pontianak2 = kota_pontianak2.textContent;
+      var value_kota_pontianak3 = kota_pontianak3.textContent;
+      var value_kota_pontianak4 = kota_pontianak4.textContent;
+
+      var kota_pontianak_count = parseFloat(
+        value_kota_pontianak.match(/\d+(\.\d+)?/)[0]
+      );
+      var kota_pontianak_count2 = parseFloat(
+        value_kota_pontianak2.match(/\d+(\.\d+)?/)[0]
+      );
+      var kota_pontianak_count3 = parseFloat(
+        value_kota_pontianak3.match(/\d+(\.\d+)?/)[0]
+      );
+      var kota_pontianak_count4 = parseFloat(
+        value_kota_pontianak4.match(/\d+(\.\d+)?/)[0]
+      );
+      // ketapang
+      var ketapang = document.getElementById("ketapang");
+      var ketapang2 = document.getElementById("ketapang2");
+      var ketapang3 = document.getElementById("ketapang3");
+      var ketapang4 = document.getElementById("ketapang4");
+
+      var value_ketapang = ketapang.textContent;
+      var value_ketapang2 = ketapang2.textContent;
+      var value_ketapang3 = ketapang3.textContent;
+      var value_ketapang4 = ketapang4.textContent;
+
+      var ketapang_count = parseFloat(value_ketapang.match(/\d+(\.\d+)?/)[0]);
+      var ketapang_count2 = parseFloat(value_ketapang2.match(/\d+(\.\d+)?/)[0]);
+      var ketapang_count3 = parseFloat(value_ketapang3.match(/\d+(\.\d+)?/)[0]);
+      var ketapang_count4 = parseFloat(value_ketapang4.match(/\d+(\.\d+)?/)[0]);
+      // kayong utara
+      var kayong_utara = document.getElementById("kayong_utara");
+      var kayong_utara2 = document.getElementById("kayong_utara2");
+      var kayong_utara3 = document.getElementById("kayong_utara3");
+      var kayong_utara4 = document.getElementById("kayong_utara4");
+
+      var value_kayong_utara = kayong_utara.textContent;
+      var value_kayong_utara2 = kayong_utara2.textContent;
+      var value_kayong_utara3 = kayong_utara3.textContent;
+      var value_kayong_utara4 = kayong_utara4.textContent;
+
+      var kayong_utara_count = parseFloat(
+        value_kayong_utara.match(/\d+(\.\d+)?/)[0]
+      );
+      var kayong_utara_count2 = parseFloat(
+        value_kayong_utara2.match(/\d+(\.\d+)?/)[0]
+      );
+      var kayong_utara_count3 = parseFloat(
+        value_kayong_utara3.match(/\d+(\.\d+)?/)[0]
+      );
+      var kayong_utara_count4 = parseFloat(
+        value_kayong_utara4.match(/\d+(\.\d+)?/)[0]
+      );
+
+      var options = {
+        series: [
+          {
+            name: "Sesuai ISR",
+            data: [
+              sekadau_count,
+              sintang_count,
+              sanggau_count,
+              pontianak_count,
+              mempawah_count,
+              melawi_count,
+              landak_count,
+              kuburaya_count,
+              kota_pontianak_count,
+              ketapang_count,
+              kayong_utara_count,
+              kapuas_hulu_count,
+            ],
+          },
+          {
+            name: "Tidak Sesuai ISR",
+            data: [
+              sekadau_count2,
+              sintang_count2,
+              sanggau_count2,
+              pontianak_count2,
+              mempawah_count2,
+              melawi_count2,
+              landak_count2,
+              kuburaya_count2,
+              kota_pontianak_count2,
+              ketapang_count2,
+              kayong_utara_count2,
+              kapuas_hulu_count2,
+            ],
+          },
+          {
+            name: "Tidak_Berizin",
+            data: [
+              sekadau_count3,
+              sintang_count3,
+              sanggau_count3,
+              pontianak_count3,
+              mempawah_count3,
+              melawi_count3,
+              landak_count3,
+              kuburaya_count3,
+              kota_pontianak_count3,
+              ketapang_count3,
+              kayong_utara_count3,
+              kapuas_hulu_count3,
+            ],
+          },
+          {
+            name: "Tidak Aktif",
+            data: [
+              sekadau_count4,
+              sintang_count4,
+              sanggau_count4,
+              pontianak_count4,
+              mempawah_count4,
+              melawi_count4,
+              landak_count4,
+              kuburaya_count4,
+              kota_pontianak_count4,
+              ketapang_count4,
+              kayong_utara_count4,
+              kapuas_hulu_count4,
+            ],
+          },
+        ],
+        chart: {
+          type: "bar",
+          height: 450,
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: "55%",
+            endingShape: "rounded",
+          },
+        },
+        dataLabels: {
+          enabled: false,
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ["transparent"],
+        },
+        xaxis: {
+          categories: [
+            "Sekadau ",
+            "Sintang",
+            "Sanggau",
+            "Pontianak",
+            "Mempawah",
+            "Melawi",
+            "Landak",
+            "Kuburaya",
+            "Kota Pontianak",
+            "Ketapang",
+            "Kayong Utara",
+            "Kapuas Hulu",
+          ],
+        },
+        yaxis: {
+          title: {
+            text: "",
+          },
+        },
+        fill: {
+          opacity: 1,
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return val;
+            },
+          },
+        },
+      };
+
+      var chart = new ApexCharts(document.querySelector("#chartline"), options);
+      chart.render();
+
+      var chart = document.querySelector("#chartpie");
+      var options = {
+        series: [44, 55, 67, 83],
+        chart: {
+          height: 350,
+          type: "radialBar",
+        },
+        plotOptions: {
+          radialBar: {
+            dataLabels: {
+              name: {
+                fontSize: "22px",
+              },
+              value: {
+                fontSize: "16px",
+              },
+              total: {
+                show: true,
+                label: "Total",
+                formatter: function (w) {
+                  // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                  return 249;
+                },
+              },
+            },
+          },
+        },
+        labels: ["Apples", "Oranges", "Bananas", "Berries"],
+      };
+      var chart = new ApexCharts(chart, options);
+      chart.render();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<% for (let i=0; i < result.length; i++) { %>
+  <p style="display: none;">Kabupaten/Kota: <%= result[i]._id %>
+  </p>
+  <% if(result[i]._id==="KAPUAS HULU" ) { %>
+    <div id="kapuas_hulu">Sesuai ISR: <%= result[i].Sesuai_ISR %>
+    </div>
+    <% } %>
+      <% } %>
+
+
+
+
+        <div class="bg-white shadow-lg p-4" id="chartline"></div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script>
+
+
+
+          var kapuas_hulu = document.getElementById("kapuas_hulu");
+
+          var value_kapuas_hulu = kapuas_hulu.textContent;
+          // var count_kapuas = parseInt(value_kapuas_hulu);
+
+          const numericValue = parseFloat(value_kapuas_hulu.match(/\d+(\.\d+)?/)[0]);
+
+          var data_count = [10, 9, 14, 1, 4, 5, 14, 22, 6, 35, 0, numericValue]
+
+          var options = {
+
+            series: [
+              {
+                name: "Sesuai ISR",
+                // data: [memek, 9, 14, 1, 4, 5, 14, 22, 6, 35, 0, 19],
+                data: data_count,
+              },
+              {
+                name: "Tidak Berizin",
+                data: [2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 4],
+              },
+              {
+                name: "Tidak Sesuai Parameter",
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+              },
+              {
+                name: "Tidak Aktif",
+                data: [4, 4, 15, 2, 3, 0, 10, 17, 3, 11, 1, 19],
+              },
+            ],
+            chart: {
+              type: "bar",
+              height: 450,
+            },
+            plotOptions: {
+              bar: {
+                horizontal: false,
+                columnWidth: "55%",
+                endingShape: "rounded",
+              },
+            },
+            dataLabels: {
+              enabled: false,
+            },
+            stroke: {
+              show: true,
+              width: 2,
+              colors: ["transparent"],
+            },
+            xaxis: {
+              categories: [
+                "Sekadau ",
+                "Sintang",
+                "Sanggau",
+                "Pontianak",
+                "Mempawah",
+                "Melawi",
+                "Landak",
+                "Kuburaya",
+                "Kota Pontianak",
+                "Ketapang",
+                "Kayong Utara",
+                "Kapuas Hulu",
+              ],
+            },
+            yaxis: {
+              title: {
+                text: "$ (thousands)",
+              },
+            },
+            fill: {
+              opacity: 1,
+            },
+            tooltip: {
+              y: {
+                formatter: function (val) {
+                  return "$ " + val + " thousands";
+                },
+              },
+            },
+          };
+
+          var chart = new ApexCharts(document.querySelector("#chartline"), options);
+
+          chart.render();
+        </script>

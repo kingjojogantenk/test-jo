@@ -1,0 +1,342 @@
+<!-- component -->
+<!DOCTYPE html>
+<html x-data="data()" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://apstard.postel.go.id/assets/images/favicon.png"
+    />
+    <TITle> Data Hasil Pemeriksaan</TITle>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicon -->
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div
+      class="flex h-screen bg-gray-800"
+      :class="{ 'overflow-hidden': isSideMenuOpen }"
+    >
+      <!-- Desktop sidebar -->
+      <%- include('partials/sidebar'); -%>
+
+      <div class="flex flex-col flex-1 w-full overflow-y-auto">
+        <%- include('partials/header'); -%>
+        <main class="">
+          <div
+            class="grid mb-4 pb-10 px-8 mx-4 rounded-3xl bg-white border-4 border-green-400"
+          >
+            <div class="grid grid-cols-12 gap-6">
+              <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
+                <div class="col-span-12 mt-8">
+                  <div class="flex items-center h-10 intro-y">
+                    <h2 class="mr-5 text-lg font-medium truncate">
+                      Data Hasil Pemeriksaan
+                    </h2>
+                  </div>
+                </div>
+
+                <div class="col-span-12 mt-5">
+                  <!-- component -->
+                  <div class="bg-white p-8 rounded-md w-full">
+                    <div class="flex items-center justify-between pb-6">
+                      <div></div>
+                      <div class="flex items-center justify-between">
+                        <div
+                          class="flex bg-gray-50 items-center p-2 rounded-md"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 text-gray-400"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                          <form action="/searchPemeriksaan" method="post">
+                            <input
+                            class="bg-gray-50 outline-none ml-1 block"
+                            type="text"
+                            name="searchTerm"
+                            id=""
+                            placeholder="search..."
+                            />
+                          </form>
+                        </div>
+
+                        <div class="flex items-center">
+                          <form action="/filterpemeriksaan" method="post" class="flex">
+                            <select id="Status" name="Status" class="mx-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                              <option value="">STATUS</option>
+                              <option value="Sesuai ISR">SESUAI ISR</option>
+                              <option value="KAPUAS HULU">TIDAK SESUAI</option>
+                              <option value="Tidak Aktif">TIDAK AKTIF</option>
+                              <option value="Tidak Berizin">TIDAK BERIZIN</option>
+                            </select>
+                        
+                            <select id="Kabupaten_Kota" name="Kabupaten_Kota" class="mx-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                              <option value="">KABUPATEN KOTA</option>
+                              <option value="KAPUAS HULU">KAPUAS HULU</option>
+                              <option value="KAYONG UTARA">KAYONG UTARA</option>
+                              <option value="KETAPANG">KETAPANG</option>
+                              <option value="KOTA PONTIANAK">KOTA PONTIANAK</option>
+                              <option value="KUBURAYA">KUBURAYA</option>
+                              <option value="LANDAK">LANDAK</option>
+                              <option value="MELAWI">MELAWI</option>
+                              <option value="MEMPAWAH">MEMPAWAH</option>
+                              <option value="PONTIANAK">PONTIANAK</option>
+                              <option value="SANGGAU">SANGGAU</option>
+                              <option value="SEKADAU">SEKADAU</option>
+                              <option value="SINTANG">SINTANG</option>
+                              <!-- Add more options as needed -->
+                            </select>
+                        
+                            <button class="mx-2 bg-green-500 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Filter</button>
+                          </form>
+                        </div>
+                        
+
+
+                        <div class="lg:ml-40 ml-10 space-x-8">
+                          <a href="/data/pemeriksaan">
+                            <button
+                              class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
+                            >
+                              INPUT DATA
+                            </button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div
+                        class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto"
+                      >
+                        <div
+                          class="inline-block min-w-full shadow rounded-lg overflow-hidden"
+                        >
+                        <% if (customers != "") { %>
+                          <table class="min-w-full leading-normal">
+                            <thead>
+                              <tr>
+                                <th
+                                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                                >
+                                  Stn_Name
+                                </th>
+                                <th
+                                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                                >
+                                  Stasiun_Lawan
+                                </th>
+
+                                <th
+                                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                                >
+                                  Merk
+                                </th>
+                                <th
+                                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                                >
+                                  Kabupaten_Kota
+                                </th>
+                                <th
+                                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                                >
+                                  Sertifikasi_Perangkat
+                                </th>
+                                <th
+                                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                                >
+                                  Status
+                                </th>
+
+                                <th
+                                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                                >
+                                  Actions
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                             
+                              <% customers.forEach(function(item) { %>
+                              <tr>
+                                <td
+                                  class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                                >
+                                  <p class="text-gray-900 whitespace-no-wrap">
+                                    <%= item.Stn_Name %>
+                                  </p>
+                                </td>
+                                <td
+                                  class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                                >
+                                  <p class="text-gray-900 whitespace-no-wrap">
+                                    <%= item.Stasiun_Lawan %>
+                                  </p>
+                                </td>
+
+                                <td
+                                  class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                                >
+                                  <p class="text-gray-900 whitespace-no-wrap">
+                                    <%= item.Merk %>
+                                  </p>
+                                </td>
+                                <td
+                                  class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                                >
+                                  <p class="text-gray-900 whitespace-no-wrap">
+                                    <%= item.Kabupaten_Kota %>
+                                  </p>
+                                </td>
+                                <td
+                                  class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                                >
+                                  <p class="text-gray-900 whitespace-no-wrap">
+                                    <%= item.Sertifikasi_Perangkat %>
+                                  </p>
+                                </td>
+
+                                <td
+                                  class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                                >
+                                  <span
+                                    class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
+                                  >
+                                    <span
+                                      aria-hidden
+                                      class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                                    ></span>
+                                    <span class="relative">
+                                      <%=item.Status%>
+                                    </span>
+                                  </span>
+                                </td>
+
+                                <td
+                                  class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                                >
+                                  <div class="flex item-center justify-center">
+                                    <div
+                                      class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                                    >
+                                      <a href="/viewPemeriksaan/<%=item._id %>">
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          fill="none"
+                                          viewBox="0 0 24 24"
+                                          stroke="currentColor"
+                                        >
+                                          <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                          />
+                                          <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                          />
+                                        </svg>
+                                      </a>
+                                    </div>
+                                    <div
+                                      class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                                    >
+                                      <a
+                                        href="/editPemeriksaan/<%= item._id %>"
+                                      >
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          fill="none"
+                                          viewBox="0 0 24 24"
+                                          stroke="currentColor"
+                                        >
+                                          <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                                          />
+                                        </svg>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                              <% }); %>
+                            </tbody>
+                          </table>
+
+                          
+                            <% } else { %>
+                                <h2>No results found.</h2>
+                              <% } %>    
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+      function data() {
+        return {
+          isSideMenuOpen: false,
+          toggleSideMenu() {
+            this.isSideMenuOpen = !this.isSideMenuOpen;
+          },
+          closeSideMenu() {
+            this.isSideMenuOpen = false;
+          },
+          isNotificationsMenuOpen: false,
+          toggleNotificationsMenu() {
+            this.isNotificationsMenuOpen = !this.isNotificationsMenuOpen;
+          },
+          closeNotificationsMenu() {
+            this.isNotificationsMenuOpen = false;
+          },
+          isProfileMenuOpen: false,
+          toggleProfileMenu() {
+            this.isProfileMenuOpen = !this.isProfileMenuOpen;
+          },
+          closeProfileMenu() {
+            this.isProfileMenuOpen = false;
+          },
+          isPagesMenuOpen: false,
+          togglePagesMenu() {
+            this.isPagesMenuOpen = !this.isPagesMenuOpen;
+          },
+        };
+      }
+    </script>
+  </body>
+</html>

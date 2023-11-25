@@ -1,0 +1,262 @@
+<!-- component -->
+<!DOCTYPE html>
+<html x-data="data()" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://apstard.postel.go.id/assets/images/favicon.png"
+  />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <!-- Favicon -->
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+    <title>Edit Data</title>
+</head>
+
+<body>
+    <div class="flex h-screen bg-gray-800" :class="{ 'overflow-hidden': isSideMenuOpen }">
+        <!-- Desktop sidebar -->
+        <%- include('partials/sidebar'); -%>
+
+            <div class="flex flex-col flex-1 w-full overflow-y-auto">
+                <%- include('partials/header'); -%>
+                    <main class="">
+                        <div class="grid mb-4 pb-10 px-8 mx-4 rounded-3xl bg-gray-100 border-4 border-green-400">
+                            <div class="grid grid-cols-12 gap-6">
+                                <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
+                                    <div class="col-span-12 mt-8">
+                                        <div class="flex items-center h-10 intro-y">
+                                            <h2 class="mr-5 text-lg font-medium truncate">Edit Data ISR</h2>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-span-12 mt-5">
+
+                                        <form id="data" action="/edit/<%= customer._id %>?_method=PUT" method="POST">
+                                            <div class="grid gap-6 mb-6 md:grid-cols-2">
+                                                <div>
+
+
+
+                                                    <div class="grid grid-cols-2 gap-6">
+                                                        <div class="mb-6">
+                                                            <label for="No"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No</label>
+                                                            <input type="text" id="No" name="No"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.No %>" required>
+                                                        </div>
+                                                        <div class="mb-6">
+                                                            <label for="Tanggal_Pemeriksaan"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
+                                                                Pemeriksaan</label>
+                                                            <input type="date" id="Tanggal_Pemeriksaan"
+                                                                name="Tanggal_Pemeriksaan" id="Tanggal_Pemeriksaan"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder=""
+                                                                value="<%= customer.Tanggal_Pemeriksaan %>" required>
+
+                                                        </div>
+                                                        <div class="mb-6">
+                                                            <label for="Metode_Pemeriksaan"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Metode
+                                                                Pemeriksaan</label>
+                                                            <input type="text" id="Metode_Pemeriksaan"
+                                                                name="Metode_Pemeriksaan"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder=""
+                                                                value="<%= customer.Metode_Pemeriksaan %>" required>
+                                                        </div>
+                                                        <div class=" mb-6">
+                                                            <label for="No_Risalah_Hasil_Pemeriksaan"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No
+                                                                Risalah Hasil Pemeriksaan</label>
+                                                            <input type="text" id="No_Risalah_Hasil_Pemeriksaan"
+                                                                name="No_Risalah_Hasil_Pemeriksaan"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder=""
+                                                                value="<%= customer.No_Risalah_Hasil_Pemeriksaan %>"
+                                                                required>
+                                                        </div>
+                                                        <div class=" mb-6">
+                                                            <label for="Client_Id"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Client
+                                                                Id</label>
+                                                            <input type="text" id="Client_Id" name="Client_Id"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.Client_Id %>"
+                                                                required>
+                                                        </div>
+                                                        <div class=" mb-6">
+                                                            <label for="Client_Name"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Client
+                                                                Name</label>
+                                                            <input type="text" id="Client_Name" name="Client_Name"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.Client_Name %>"
+                                                                required>
+                                                        </div>
+                                                        <div class="mb-6">
+                                                            <label for="No_ISR"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No
+                                                                ISR</label>
+                                                            <input type="text" id="No_ISR" name="No_ISR"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.No_ISR %>" required>
+                                                        </div>
+                                                        <div class=" mb-6">
+                                                            <label for="Link_ID"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link
+                                                                ID</label>
+                                                            <input type="text" id="Link_ID" name="Link_ID"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.Link_ID %>" required>
+                                                        </div>
+                                                        <div class=" mb-6">
+                                                            <label for="Stn_Name"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stn
+                                                                Name</label>
+                                                            <input type="text" id="Stn_Name" name="Stn_Name"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.Stn_Name %>"
+                                                                required>
+                                                        </div>
+                                                        <div class=" mb-6">
+                                                            <label for="Stasiun_Lawan"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stasiun
+                                                                Lawan</label>
+                                                            <input type="text" id="Stasiun_Lawan" name="Stasiun_Lawan"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.Stasiun_Lawan %>"
+                                                                required>
+                                                        </div>
+                                                        <div class=" mb-6">
+                                                            <label for="Long"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Long</label>
+                                                            <input type="text" id="Long" name="Long"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.Long %>" required>
+                                                        </div>
+                                                        <div class=" mb-6">
+                                                            <label for="Lat"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lat</label>
+                                                            <input type="text" id="Lat" name="Lat"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.Lat %>" required>
+                                                        </div>
+                                                        <div class=" mb-6">
+                                                            <label for="Tx_Mhz"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tx
+                                                                Mhz</label>
+                                                            <input type="text" id="Tx_Mhz" name="Tx_Mhz"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.Tx_Mhz %>" required>
+                                                        </div>
+                                                        <div class=" mb-6">
+                                                            <label for="Rx_Mhz"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rx
+                                                                Mhz</label>
+                                                            <input type="text" id="Rx_Mhz" name="Rx_Mhz"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.Rx_Mhz %>" required>
+                                                        </div>
+                                                        <div class=" mb-6">
+                                                            <label for="BW_Khz"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">BW
+                                                                Khz</label>
+                                                            <input type="text" id="BW_Khz" name="BW_Khz"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.BW_Khz %>" required>
+                                                        </div>
+                                                        <div class=" mb-6">
+                                                            <label for="Merk"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Merk</label>
+                                                            <input type="text" id="Merk" name="Merk"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.Merk %>" required>
+                                                        </div>
+                                                        <div class=" mb-6">
+                                                            <label for="Kabupaten_Kota"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kabupaten
+                                                                Kota</label>
+                                                            <input type="text" id="Kabupaten_Kota" name="Kabupaten_Kota"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="" value="<%= customer.Kabupaten_Kota %>"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                    <button type=" submit"
+                                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
+                                        </form>
+                                        <form action="/edit/<%= customer._id %>?_method=DELETE" method="POST">
+
+                                            <button type=" submit"
+                                                class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 mt-2">
+                                                Delete</button>
+                                        </form>
+                                        <!-- toast -->
+
+
+
+
+                                        <!-- toast -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+            </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        function data() {
+            return {
+                isSideMenuOpen: false,
+                toggleSideMenu() {
+                    this.isSideMenuOpen = !this.isSideMenuOpen;
+                },
+                closeSideMenu() {
+                    this.isSideMenuOpen = false;
+                },
+                isNotificationsMenuOpen: false,
+                toggleNotificationsMenu() {
+                    this.isNotificationsMenuOpen = !this.isNotificationsMenuOpen;
+                },
+                closeNotificationsMenu() {
+                    this.isNotificationsMenuOpen = false;
+                },
+                isProfileMenuOpen: false,
+                toggleProfileMenu() {
+                    this.isProfileMenuOpen = !this.isProfileMenuOpen;
+                },
+                closeProfileMenu() {
+                    this.isProfileMenuOpen = false;
+                },
+                isPagesMenuOpen: false,
+                togglePagesMenu() {
+                    this.isPagesMenuOpen = !this.isPagesMenuOpen;
+                },
+            };
+        }
+    </script>
+
+    <script>
+        const myDate = moment().locale('id'); // create a new moment object with the current date and time
+        const myDateInput = document.getElementById('Tanggal_Pemeriksaan');
+        myDateInput.value = myDate.format('dddd, D MMMM YYYY');
+        console.log(myDateInput); // format the date and set it as the value of the input element
+    </script>
+
+
+
+</body>
+
+</html>

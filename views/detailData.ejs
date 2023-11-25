@@ -1,0 +1,343 @@
+<!-- component -->
+<!DOCTYPE html>
+<html x-data="data()" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://apstard.postel.go.id/assets/images/favicon.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicon -->
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>Detail</title>
+  </head>
+
+  <body>
+    <div
+      class="flex h-screen bg-gray-800"
+      :class="{ 'overflow-hidden': isSideMenuOpen }"
+    >
+      <!-- Desktop sidebar -->
+      <%- include('partials/sidebar'); -%>
+
+      <div class="flex flex-col flex-1 w-full overflow-y-auto">
+        <%- include('partials/header'); -%>
+        <main class="">
+          <div
+            class="grid mb-4 pb-10 px-8 mx-4 rounded-3xl bg-white border-4 border-green-400"
+          >
+            <div class="grid grid-cols-12 gap-6">
+              <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
+                <div class="col-span-12 mt-8">
+                  <div class="flex items-center h-10 intro-y">
+                    <h2 class="mr-5 text-lg font-medium truncate">
+                      Detail Data ISR
+                    </h2>
+                  </div>
+                </div>
+
+                <div class="col-span-12 mt-5">
+                  <!-- component -->
+                  <div>
+                    <div class="px-4 sm:px-0">
+                     
+                      
+                    </div>
+                    <div class="mt-6 border-t border-gray-100">
+                      <dl class="divide-y divide-gray-100">
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            No
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.No %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Tanggal Pemeriksaan
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.Tanggal_Pemeriksaan %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Metode Pemeriksaan
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.Metode_Pemeriksaan %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Nomor Risalah Hasil Pemeriksaan
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.No_Risalah_Hasil_Pemeriksaan %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Client ID
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.Client_Id %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Client Name
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.Client_Name %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            No_ISR
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.No_ISR %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Link ID
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.Link_ID %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            STN Name
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.Stn_Name %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Stasiun Lawan
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.Stasiun_Lawan %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Long
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.Long %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Lat
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.Lat %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            TX(MHZ)
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.Tx_Mhz %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            RX(MHZ)
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.Rx_Mhz %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            BW(KHZ)
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.BW_Khz %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Merk
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.Merk %>
+                          </dd>
+                        </div>
+                        <div
+                          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                        >
+                          <dt
+                            class="text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Kabupaten / Kota
+                          </dt>
+                          <dd
+                            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                          >
+                            <%= customer.Kabupaten_Kota %>
+                          </dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+      function data() {
+        return {
+          isSideMenuOpen: false,
+          toggleSideMenu() {
+            this.isSideMenuOpen = !this.isSideMenuOpen;
+          },
+          closeSideMenu() {
+            this.isSideMenuOpen = false;
+          },
+          isNotificationsMenuOpen: false,
+          toggleNotificationsMenu() {
+            this.isNotificationsMenuOpen = !this.isNotificationsMenuOpen;
+          },
+          closeNotificationsMenu() {
+            this.isNotificationsMenuOpen = false;
+          },
+          isProfileMenuOpen: false,
+          toggleProfileMenu() {
+            this.isProfileMenuOpen = !this.isProfileMenuOpen;
+          },
+          closeProfileMenu() {
+            this.isProfileMenuOpen = false;
+          },
+          isPagesMenuOpen: false,
+          togglePagesMenu() {
+            this.isPagesMenuOpen = !this.isPagesMenuOpen;
+          },
+        };
+      }
+    </script>
+  </body>
+</html>

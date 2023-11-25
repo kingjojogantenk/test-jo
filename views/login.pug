@@ -1,0 +1,125 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(
+      content="width=device-width, initial-scale=1.0" 
+      name="viewport"
+      )
+    meta(
+      content="ie=edge" 
+      http-equiv="X-UA-Compatible"
+      )
+    title Tailwind Login Template by David Grzyb
+    meta(
+      content="David Grzyb" 
+      name="author"
+      )
+    meta(
+      content="" 
+      name="description"
+      )
+    link(
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      )
+    link(
+      rel="stylesheet" 
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      )
+    style.
+      .body-bg {
+        background-color: #0093e9;
+        background-image: linear-gradient(160deg, #0093e9 0%, #80a0d0 100%);
+        }
+  header.max-w-lg.mx-auto
+    a(href="#")
+      h1.text-4xl.font-bold.text-white.text-center Login
+  main.bg-white.max-w-lg.mx-auto.p-8.my-10.rounded-lg.shadow-2xl(class="md:p-12")
+    section
+      img.w-30.h-40.mx-auto(
+        alt="" 
+        src="LOGO_EQUATOR.jpg"
+        )
+      h3.font-bold.text-2xl.text-center
+        | INSPEKSI DAN VALIDASI DATA IZIN
+        br
+      h3.font-bold.text-2xl.text-center STASIUN RADIO
+    section.mt-10
+      form#sign-in.flex.flex-col
+        .mb-2.pt-3.rounded.bg-gray-200
+          label.block.text-gray-700.text-sm.font-bold.mb-2.ml-3(for="email") Username
+          input#email.bg-gray-200.rounded.w-full.text-gray-700.border-b-4.border-gray-300.transition.duration-500.px-3.pb-3(
+            class="focus:outline-none focus:border-blue-600" 
+            type="text" 
+            name="email"
+            )
+        #email-error.text-red-600.mb-2
+        .mb-2.pt-3.rounded.bg-gray-200
+          label.block.text-gray-700.text-sm.font-bold.mb-2.ml-3(for="password") Password
+          input#password.bg-gray-200.rounded.w-full.text-gray-700.border-b-4.border-gray-300.transition.duration-500.px-3.pb-3(
+            class="focus:outline-none focus:border-blue-600" 
+            type="password" 
+            name="password"
+            )
+        #password-error.text-red-600.mb-2
+        .flex.justify-end
+          a.text-sm.text-blue-600.mb-6(
+            class="hover:text-blue-700 hover:underline" 
+            href="#"
+            ) Forgot your password?
+        button#password-error.bg-blue-600.text-white.font-bold.py-2.rounded.shadow-lg.transition.duration-200(
+          type="submit" 
+          class="hover:bg-blue-700 hover:shadow-xl"
+          ) Login
+  .max-w-lg.mx-auto.text-center.mt-12.mb-6
+    p.text-white
+      | Have an account?
+      a.font-bold(
+        class="hover:underline" 
+        href="/signup"
+        ) Sign up
+      | .
+  footer.max-w-lg.mx-auto.flex.justify-center.text-white
+    a(
+      class="hover:underline" 
+      href="#"
+      ) Contact
+    span.mx-3 •
+    a(
+      class="hover:underline" 
+      href="#"
+      ) Privacy
+  script.
+    const form = document.getElementById("sign-in");
+      const emailError = document.getElementById("email-error");
+      const passwordError = document.getElementById("password-error");
+      form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      // reset errors
+      emailError.textContent = "";
+      passwordError.textContent = "";
+      const email = form.email.value;
+      const password = form.password.value;
+      console.log(email, password);
+      try {
+      const res = await fetch("/login", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: {
+      "Content-Type": "application/json",
+      },
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.errors) {
+      emailError.textContent = data.errors.email;
+      passwordError.textContent = data.errors.password;
+      }
+      if (data.user) {
+      location.assign("/");
+      }
+      } catch (err) {
+      console.log(err);
+      }
+      });
